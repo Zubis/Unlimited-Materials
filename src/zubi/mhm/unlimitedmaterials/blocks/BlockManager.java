@@ -12,7 +12,7 @@ public class BlockManager {
 	public ArrayList<CustomBlock> BlockArray = new ArrayList<CustomBlock>(); 
 	public static CustomBlock block;
 	public static Texture blockTexture;
-
+	
 	public BlockManager(UnlimitedMaterials plugin, ConfigurationSection blocksSection) {
 		
 		int i = 1;

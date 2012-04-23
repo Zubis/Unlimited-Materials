@@ -23,7 +23,6 @@ public class UnlimitedMaterials extends JavaPlugin{
 	public static CustomBlock Wool_yellowSlab;
 	public static Texture Wool_yellowTexture;
 	
-	
 	@Override
 	public void onDisable() {
 		log.info("[" + plugdisc.getName() + "] Version " + plugdisc.getVersion() + " disabled.");		
