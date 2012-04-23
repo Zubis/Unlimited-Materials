@@ -2,6 +2,8 @@ package zubi.mhm.unlimitedmaterials;
 
 import java.util.logging.Logger;
 
+import lib.PatPeter.SQLibrary.SQLite;
+
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -19,9 +21,13 @@ public class UnlimitedMaterials extends JavaPlugin{
 	FileConfiguration config = null;
 
 	PluginDescriptionFile plugdisc;
-
+	public String logPrefix = "[Unlimited-Materials] "; // Prefix to go in front of all log entries
+	
 	public static CustomBlock Wool_yellowSlab;
 	public static Texture Wool_yellowTexture;
+	
+	public SQLite sqlite;
+	
 	
 	@Override
 	public void onDisable() {
@@ -31,6 +37,21 @@ public class UnlimitedMaterials extends JavaPlugin{
 	@Override
 	public void onEnable() {
 		plugdisc = this.getDescription();
+		
+		this.log.info(this.logPrefix + "SQLite Initializing");
+
+		// Declare SQLite handler
+		this.sqlite = new SQLite(this.log, this.logPrefix, "blocks", "plugins/" + plugdisc.getName());
+
+		// Initialize SQLite handler
+		this.sqlite.open();
+
+		// Check if the table exists, if it doesn't create it
+		if (!this.sqlite.checkTable("blocks")) {
+			this.log.info(this.logPrefix + "Creating table blocks");
+			String query = "CREATE TABLE IF NOT EXISTS positions (id integer NOT NULL PRIMARY KEY AUTOINCREMENT, player VARCHAR(40), X INT, Y INT, Z INT, block_name VARCHAR(30) , block_id INT, date DATETIME);";
+			this.sqlite.createTable(query); // Use SQLite.createTable(query) to create tables 
+		}
 		
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(blockListener, this);

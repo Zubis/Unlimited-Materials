@@ -1,5 +1,5 @@
 name: Unlimited-Materials
-version: 0.1
+version: 1.2
 description: Unlimited Materials for MHM
 author: Zubi
 website: http://Zubi.fr
@@ -9,5 +9,5 @@ main:  zubi.mhm.unlimitedmaterials.UnlimitedMaterials
 
 commands:
    UnlimitedMaterials:
-      description: Permet de recharger le plugin
+      description: inutile pour le moment
       usage: /um
