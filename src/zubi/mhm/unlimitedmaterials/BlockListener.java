@@ -20,11 +20,10 @@ public class BlockListener implements Listener{
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent event)
 	{	
-		
 		SpoutBlock BlockPlaced = (SpoutBlock) event.getBlockPlaced();
 		
 		if(BlockPlaced.isCustomBlock()){
-			String query = "INSERT INTO positions (player, X, Y, Z, block_name, block_id, date) VALUES (\'"+event.getPlayer().getName()+"\', \'"+ BlockPlaced.getX()+"\', \'"+ BlockPlaced.getY()+"\', \'"+ BlockPlaced.getZ()+"\', \'"+ BlockPlaced.getCustomBlock().getName() +"\', \'"+ BlockPlaced.getCustomBlockId() +"\', date('now'))";
+			String query = "INSERT INTO positions (player, world, X, Y, Z, block_name, block_id, date) VALUES (\'"+event.getPlayer().getName()+"\', \'"+ BlockPlaced.getWorld() +"\' ,\'"+ BlockPlaced.getX()+"\', \'"+ BlockPlaced.getY()+"\', \'"+ BlockPlaced.getZ()+"\', \'"+ BlockPlaced.getCustomBlock().getName() +"\', \'"+ BlockPlaced.getCustomBlockId() +"\', date('now'))";
 			this.plugin.sqlite.query(query);
 		}
 	}
@@ -32,32 +31,11 @@ public class BlockListener implements Listener{
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event)
 	{	
-		
 		SpoutBlock BlockBreaked = (SpoutBlock) event.getBlock();
 		
 		if(BlockBreaked.isCustomBlock()){
-			String query = "DELETE FROM positions WHERE X = " +BlockBreaked.getX()+ " AND Y = "+ BlockBreaked.getY() +" AND Z = "+ BlockBreaked.getZ();
+			String query = "DELETE FROM positions WHERE world = \'"+ BlockBreaked.getWorld() +"\' AND X = " +BlockBreaked.getX()+ " AND Y = "+ BlockBreaked.getY() +" AND Z = "+ BlockBreaked.getZ();
 			this.plugin.sqlite.query(query);
 		}
-		
-		/*if(BlockBreaked.isCustomBlock()){
-			System.out.println("DELETE FROM positions WHERE X = " +BlockBreaked.getX()+ " AND Y = "+ BlockBreaked.getY() +" AND Z = "+ BlockBreaked.getZ());
-			
-			//player VARCHAR(40), X INT, Y INT, Z INT, type VARCHAR(30)
-			
-			bddLite = new SQLite(plugin.log, "[UM]", "blocks", "plugins/" + plugin.plugdisc.getName());
-			bddLite.getConnection();
-			//ResultSet resultat = null;
-			ResultSet rs = plugin.bddLite.query("DELETE FROM positions WHERE X = " +BlockBreaked.getX()+ " AND Y = "+ BlockBreaked.getY() +" AND Z = "+ BlockBreaked.getZ());
-		    try
-		    {
-		        rs.close();
-		    }
-		    catch (SQLException e)
-		    {
-		        plugin.log.info(e.getMessage());
-		    }
-		
-		}*/
 	}
 }

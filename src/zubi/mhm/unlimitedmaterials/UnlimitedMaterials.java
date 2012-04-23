@@ -49,7 +49,7 @@ public class UnlimitedMaterials extends JavaPlugin{
 		// Check if the table exists, if it doesn't create it
 		if (!this.sqlite.checkTable("blocks")) {
 			this.log.info(this.logPrefix + "Creating table blocks");
-			String query = "CREATE TABLE IF NOT EXISTS positions (id integer NOT NULL PRIMARY KEY AUTOINCREMENT, player VARCHAR(40), X INT, Y INT, Z INT, block_name VARCHAR(30) , block_id INT, date DATETIME);";
+			String query = "CREATE TABLE IF NOT EXISTS positions (id integer NOT NULL PRIMARY KEY AUTOINCREMENT, player VARCHAR(40), world VARCHAR(20), X INT, Y INT, Z INT, block_name VARCHAR(30) , block_id INT, date DATETIME);";
 			this.sqlite.createTable(query); // Use SQLite.createTable(query) to create tables 
 		}
 		
