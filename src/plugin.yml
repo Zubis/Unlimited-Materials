@@ -1,0 +1,13 @@
+name: Unlimited-Materials
+version: 0.1
+description: Unlimited Materials for MHM
+author: Zubi
+website: http://Zubi.fr
+depend: [Spout]
+
+main:  zubi.mhm.unlimitedmaterials.UnlimitedMaterials
+
+commands:
+   UnlimitedMaterials:
+      description: Permet de recharger le plugin
+      usage: /um
