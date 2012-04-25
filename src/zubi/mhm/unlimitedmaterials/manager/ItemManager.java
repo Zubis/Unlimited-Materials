@@ -1,4 +1,4 @@
-package zubi.mhm.unlimitedmaterials.items;
+package zubi.mhm.unlimitedmaterials.manager;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,7 @@ import org.getspout.spoutapi.block.design.Texture;
 import org.getspout.spoutapi.material.CustomItem;
 
 import zubi.mhm.unlimitedmaterials.UnlimitedMaterials;
+import zubi.mhm.unlimitedmaterials.items.Coins;
 import zubi.mhm.unlimitedmaterials.utils.Debug;
 
 public class ItemManager {

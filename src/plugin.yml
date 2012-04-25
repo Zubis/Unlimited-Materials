@@ -8,6 +8,6 @@ depend: [Spout]
 main:  zubi.mhm.unlimitedmaterials.UnlimitedMaterials
 
 commands:
-   UnlimitedMaterials:
-      description: inutile pour le moment
-      usage: /um
+  um:
+    description: rebuild les blocs custom
+    usage: /um rebuild [size]

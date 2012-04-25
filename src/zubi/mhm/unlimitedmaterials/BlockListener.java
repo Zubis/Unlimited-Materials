@@ -25,7 +25,7 @@ public class BlockListener implements Listener{
 		SpoutBlock BlockPlaced = (SpoutBlock) event.getBlockPlaced();
 		
 		if(BlockPlaced.isCustomBlock()){
-			String query = "INSERT INTO positions (player, world, X, Y, Z, block_name, block_id, date) VALUES (\'"+event.getPlayer().getName()+"\', \'"+ BlockPlaced.getWorld() +"\' ,\'"+ BlockPlaced.getX()+"\', \'"+ BlockPlaced.getY()+"\', \'"+ BlockPlaced.getZ()+"\', \'"+ BlockPlaced.getCustomBlock().getName() +"\', \'"+ BlockPlaced.getCustomBlockId() +"\', date('now'))";
+			String query = "INSERT INTO positions (player, world, X, Y, Z, block_name, block_id, date) VALUES (\'"+event.getPlayer().getName()+"\', \'"+ BlockPlaced.getWorld().getName() +"\' ,\'"+ BlockPlaced.getX()+"\', \'"+ BlockPlaced.getY()+"\', \'"+ BlockPlaced.getZ()+"\', \'"+ BlockPlaced.getCustomBlock().getName() +"\', \'"+ BlockPlaced.getCustomBlockId() +"\', date('now'))";
 			this.plugin.sqlite.query(query);
 			Debug.debug("Insert value into BDD : " + event.getPlayer().getName() + " " + BlockPlaced.getWorld().getName()+ " "+ BlockPlaced.getName() + " " + BlockPlaced.getX() + ":" + BlockPlaced.getY() + ":" + BlockPlaced.getZ());
 		}
@@ -37,7 +37,7 @@ public class BlockListener implements Listener{
 		SpoutBlock BlockBreaked = (SpoutBlock) event.getBlock();
 		
 		if(BlockBreaked.isCustomBlock()){
-			String query = "DELETE FROM positions WHERE world = \'"+ BlockBreaked.getWorld() +"\' AND X = " +BlockBreaked.getX()+ " AND Y = "+ BlockBreaked.getY() +" AND Z = "+ BlockBreaked.getZ();
+			String query = "DELETE FROM positions WHERE world = \'"+ BlockBreaked.getWorld().getName() +"\' AND X = " +BlockBreaked.getX()+ " AND Y = "+ BlockBreaked.getY() +" AND Z = "+ BlockBreaked.getZ();
 			this.plugin.sqlite.query(query);
 			Debug.debug("Delete value into BDD : " + event.getPlayer().getName() + " " + BlockBreaked.getWorld().getName()+ " "+ BlockBreaked.getName() + " " + BlockBreaked.getX() + ":" + BlockBreaked.getY() + ":" + BlockBreaked.getZ());
 		}

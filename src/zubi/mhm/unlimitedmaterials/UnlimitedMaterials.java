@@ -11,8 +11,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.getspout.spoutapi.block.design.Texture;
 import org.getspout.spoutapi.material.CustomBlock;
-import zubi.mhm.unlimitedmaterials.blocks.*;
-import zubi.mhm.unlimitedmaterials.items.ItemManager;
+import zubi.mhm.unlimitedmaterials.manager.*;
 import zubi.mhm.unlimitedmaterials.utils.Debug;
 
 public class UnlimitedMaterials extends JavaPlugin{
@@ -28,8 +27,8 @@ public class UnlimitedMaterials extends JavaPlugin{
 	
 	public static CustomBlock Wool_yellowSlab;
 	public static Texture Wool_yellowTexture;
-	
 	public SQLite sqlite;
+	private UnlimitedMaterialsCommandExecutor myExecutor;
 	
 	
 	@Override
@@ -73,11 +72,8 @@ public class UnlimitedMaterials extends JavaPlugin{
 		new ItemManager(this, itemsSection);
 		new RecipeManager(this, recipesSection);
 		
-		//System.out.println(blockManager.BlockArray.get(0));
-		//System.out.println(blockManager.BlockArray.get(1).toString());
-		
-		/*myExecutor = new UnlimitedMaterialsCommandExecutor(this);
-		getCommand("um").setExecutor(myExecutor);*/
+		myExecutor = new UnlimitedMaterialsCommandExecutor(this);
+		getCommand("um").setExecutor(myExecutor);
 		
 		log.info("[" + plugdisc.getName() + "] Version " + plugdisc.getVersion() + " enabled.");	
 	}

@@ -1,4 +1,4 @@
-package zubi.mhm.unlimitedmaterials;
+package zubi.mhm.unlimitedmaterials.manager;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.getspout.spoutapi.material.MaterialData;
 import org.getspout.spoutapi.inventory.SpoutItemStack;
 import org.getspout.spoutapi.inventory.SpoutShapedRecipe;
 
+import zubi.mhm.unlimitedmaterials.UnlimitedMaterials;
 import zubi.mhm.unlimitedmaterials.utils.Debug;
 
 public class RecipeManager {

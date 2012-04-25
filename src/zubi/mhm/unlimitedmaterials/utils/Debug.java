@@ -12,8 +12,11 @@ public class Debug {
 
 	public static void debug(String debugText) {
 		if (UnlimitedMaterials.instance.getConfig().getBoolean("config.debug")) {
-			//Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED +tag + debugText);
-			Bukkit.getServer().broadcastMessage(ChatColor.RED +tag + debugText);
+			if(Bukkit.getServer().getOnlinePlayers().length > 0){
+				Bukkit.getServer().broadcastMessage(ChatColor.RED +tag + debugText);				
+			}else{
+				Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED +tag + debugText);
+			}
 		}
 	}
 

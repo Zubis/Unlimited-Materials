@@ -1,4 +1,4 @@
-package zubi.mhm.unlimitedmaterials.blocks;
+package zubi.mhm.unlimitedmaterials.manager;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.getspout.spoutapi.block.design.Texture;
 import org.getspout.spoutapi.material.CustomBlock;
 import zubi.mhm.unlimitedmaterials.UnlimitedMaterials;
+import zubi.mhm.unlimitedmaterials.blocks.Cubes;
 import zubi.mhm.unlimitedmaterials.utils.Debug;
 
 public class BlockManager {

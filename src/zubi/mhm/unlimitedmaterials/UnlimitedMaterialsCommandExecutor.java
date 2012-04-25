@@ -1,8 +1,21 @@
 package zubi.mhm.unlimitedmaterials;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import  org.bukkit.util.Vector;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.getspout.spoutapi.block.design.BlockDesign;
+
+import zubi.mhm.unlimitedmaterials.utils.Debug;
 
 public class UnlimitedMaterialsCommandExecutor implements CommandExecutor {
 	 
@@ -14,10 +27,51 @@ public class UnlimitedMaterialsCommandExecutor implements CommandExecutor {
  
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		if(command.getName().equalsIgnoreCase("um")){ 
-			plugin.loadConfig();
-			return true;
-		} 
+		Player player = null;
+		if (sender instanceof Player) {
+			player = (Player) sender;
+		}
+		if(command.getName().equalsIgnoreCase("um")){
+			if(args[0].equalsIgnoreCase("rebuild")){ 
+				String query = "SELECT * FROM positions";
+				ResultSet result = this.plugin.sqlite.query(query);
+				
+				try {
+					while(result.next()){
+						
+						
+						
+						
+						World world = Bukkit.getWorld(result.getString("world"));
+						Double x = result.getDouble("x");
+						Double y = result.getDouble("y");
+						Double z = result.getDouble("z");
+						
+						Location loc = new Location(world, x, y, z);
+						
+						Block b = world.getBlockAt(loc);
+						b.setType(Material.STONE);
+						Debug.debug(loc);
+						
+//						world.getBlockAt(loc).
+						
+						//Bukkit.getServer().getWorld(result.getString("world")).
+					}
+					
+					/*for(int i=0, n=result.getFetchSize(); i < n; i++){
+						
+					}*/
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return true;
+			}else{
+				player.sendMessage("try : /um rebuild [size]");
+				return false;				
+			}
+		}
 		return false; 
 	}
 }
