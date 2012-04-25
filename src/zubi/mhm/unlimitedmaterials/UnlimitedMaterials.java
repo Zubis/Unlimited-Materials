@@ -13,9 +13,11 @@ import org.getspout.spoutapi.block.design.Texture;
 import org.getspout.spoutapi.material.CustomBlock;
 import zubi.mhm.unlimitedmaterials.blocks.*;
 import zubi.mhm.unlimitedmaterials.items.ItemManager;
+import zubi.mhm.unlimitedmaterials.utils.Debug;
 
 public class UnlimitedMaterials extends JavaPlugin{
 	private final BlockListener blockListener = new BlockListener(this);
+	public static UnlimitedMaterials instance;
 	
 	public final Logger log = Logger.getLogger("Minecraft");
 
@@ -39,12 +41,11 @@ public class UnlimitedMaterials extends JavaPlugin{
 	public void onEnable() {
 		plugdisc = this.getDescription();
 		
+		instance = this;
 		this.log.info(this.logPrefix + "SQLite Initializing");
 
 		// Declare SQLite handler
 		this.sqlite = new SQLite(this.log, this.logPrefix, "blocks", "plugins/" + plugdisc.getName());
-
-		// Initialize SQLite handler
 		this.sqlite.open();
 
 		// Check if the table exists, if it doesn't create it
@@ -60,6 +61,9 @@ public class UnlimitedMaterials extends JavaPlugin{
 		config = this.getConfig();
 		loadConfig();
 
+		if(config.getBoolean("config.debug")){
+			Debug.debug("Debug mode enabled");
+		}
 		
 		ConfigurationSection blocksSection = config.getConfigurationSection("blocks");
 		ConfigurationSection recipesSection = config.getConfigurationSection("recipes");

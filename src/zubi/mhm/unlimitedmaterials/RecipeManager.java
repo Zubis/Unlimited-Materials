@@ -10,6 +10,8 @@ import org.getspout.spoutapi.material.MaterialData;
 import org.getspout.spoutapi.inventory.SpoutItemStack;
 import org.getspout.spoutapi.inventory.SpoutShapedRecipe;
 
+import zubi.mhm.unlimitedmaterials.utils.Debug;
+
 public class RecipeManager {
 	
 	private SpoutItemStack itemStack;
@@ -41,6 +43,7 @@ public class RecipeManager {
 			int DId = recipeSection.getInt(String.valueOf(i)+".D.id");
 			Short DSubId = Short.valueOf(recipeSection.getString(String.valueOf(i)+".D.subId", "0"));
 			
+			String blockDesc = recipeSection.getString(String.valueOf(i)+ ".desc").toLowerCase();
 			String blockType = recipeSection.getString(String.valueOf(i)+ ".item.type").toLowerCase();
 			int blockId = recipeSection.getInt(String.valueOf(i)+ ".item.id");
 			Short blockSubId = Short.valueOf(recipeSection.getString(String.valueOf(i)+".block.subId", "0"));
@@ -143,6 +146,7 @@ public class RecipeManager {
 				}
 			}
 			
+			Debug.debug("New recipe : " + blockDesc);
 			SpoutManager.getMaterialManager().registerSpoutRecipe(blockRecipe);
 			//System.out.println("[UM RecipeManager] Adding the craft : " + recipeSection.getString(String.valueOf(i)+".desc"));
 			
