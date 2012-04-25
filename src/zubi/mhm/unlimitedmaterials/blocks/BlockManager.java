@@ -40,20 +40,22 @@ public class BlockManager {
 			
 			blockTexture = new Texture(plugin, blockUrl, blockSize * temp, blockSize, blockSize);
 			
-			if(blockType == 1){
-				System.out.println("[UM BlockManager] Initialize a block in type 1 face ("+ blockName +")");
-				block = new OneFace(plugin, blockTexture, blockName, blockParentId);				
-			}else if(blockType == 2){
-				System.out.println("[UM BlockManager] Initialize a block in type 2 faces ("+ blockName +")");
-				block = new TwoFace(plugin, blockTexture, blockName, blockParentId);		
-			}else if(blockType == 3){
-				System.out.println("[UM BlockManager] Initialize a block in type 3 faces ("+ blockName +")");
-				block = new ThreeFace(plugin, blockTexture, blockName, blockParentId);		
-			}else if(blockType == 4){
-				System.out.println("[UM BlockManager] Initialize a block in type 4 faces ("+ blockName +")");
-				block = new FourFace(plugin, blockTexture, blockName, blockParentId);		
+			int[] faces;
+			
+			switch(blockType){
+				case 1: faces = new int[] {0,0,0,0,0,0};
+					break;
+				case 2: faces = new int[] {0,1,1,1,1,0};
+					break;
+				case 3: faces = new int[] {2,1,1,1,1,0};
+					break;
+				case 4: faces = new int[] {2,1,3,3,3,0};
+					break;
+				default: faces = new int[] {0,0,0,0,0,0};
 			}
 			
+			block = new Cubes(plugin, blockTexture, blockName, blockParentId, faces);
+
 			BlockArray.add(block);
 			i++;
 		}

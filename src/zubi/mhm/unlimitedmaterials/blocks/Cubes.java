@@ -6,15 +6,13 @@ import org.getspout.spoutapi.block.design.Texture;
 import org.getspout.spoutapi.material.MaterialData;
 import org.getspout.spoutapi.material.block.GenericCuboidCustomBlock;
 
-public class OneFace extends GenericCuboidCustomBlock
+public class Cubes extends GenericCuboidCustomBlock
 {
-    public OneFace(Plugin plugin, Texture texture, String blockName, Integer blockParentId)
+    public Cubes(Plugin plugin, Texture texture, String blockName, Integer blockParentId, int[] faces)
     {
-        super(plugin, blockName, blockParentId, new GenericCuboidBlockDesign(plugin, texture, new int[] {0,0,0,0,0,0}, 0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F));
+        super(plugin, blockName, blockParentId, new GenericCuboidBlockDesign(plugin, texture, faces, 0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F));
         setBlockDesign(getBlockDesign().setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F));
-        //setStepSound(MaterialData.leaves.getStepSound());
         setHardness(MaterialData.getBlock(blockParentId).getHardness());
         setLightLevel(MaterialData.getBlock(blockParentId).getLightLevel());
-        //setFriction(MaterialData.netherrack.getFriction());
     }
 }

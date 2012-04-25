@@ -5,6 +5,7 @@ import java.util.List;
 import org.bukkit.configuration.ConfigurationSection;
 import org.getspout.spoutapi.SpoutManager;
 import org.getspout.spoutapi.material.CustomBlock;
+import org.getspout.spoutapi.material.CustomItem;
 import org.getspout.spoutapi.material.MaterialData;
 import org.getspout.spoutapi.inventory.SpoutItemStack;
 import org.getspout.spoutapi.inventory.SpoutShapedRecipe;
@@ -17,6 +18,8 @@ public class RecipeManager {
 	public RecipeManager(UnlimitedMaterials plugin, ConfigurationSection recipeSection) {
 		
 		CustomBlock[] blocks = MaterialData.getCustomBlocks();
+		CustomItem[] items = MaterialData.getCustomItems();
+		int nbBlocks = blocks.length;
 		
 		int i = 1;
 		while (recipeSection.contains(String.valueOf(i))){
@@ -60,9 +63,14 @@ public class RecipeManager {
 					//System.out.println("[UnlimitedMaterials] item type : " + blockType);
 					//System.out.println("[UnlimitedMaterials] item : " + MaterialData.getItem(blockId));
 					itemStack = new SpoutItemStack( MaterialData.getMaterial(blockId, blockSubId), blockQuantity);
+				}else if(blockType.equalsIgnoreCase("CustomItem")){
+					//System.out.println("[UnlimitedMaterials] item type : " + blockType);
+					//System.out.println("[UnlimitedMaterials] item : " + MaterialData.getItem(blockId));
+					System.out.println();
+					itemStack = new SpoutItemStack( items[blockId+nbBlocks-1], blockQuantity);
 				}else{
 					//System.out.println("[UnlimitedMaterials] Unknown item type : " + blockType);
-					itemStack = new SpoutItemStack( MaterialData.getMaterial(1), blockQuantity);
+					itemStack = new SpoutItemStack( MaterialData.air, blockQuantity);
 				}
 			}
 			
@@ -79,10 +87,13 @@ public class RecipeManager {
 			if(AType != null){
 				if( AType.equalsIgnoreCase("custom")){
 					blockRecipe.setIngredient('A', blocks[AId-1]);
-					System.out.println("Custom A :"+blocks[AId-1]);
+					//System.out.println("Custom A :"+blocks[AId-1]);
+				}else if(AType.equalsIgnoreCase("customItem")){
+					blockRecipe.setIngredient('A', items[AId+nbBlocks-1]);
+					//System.out.println("Original A :"+ MaterialData.getMaterial(AId, ASubId).getName());
 				}else if(AType.equalsIgnoreCase("original")){
 					blockRecipe.setIngredient('A', MaterialData.getMaterial(AId, ASubId));
-					System.out.println("Original A :"+ MaterialData.getMaterial(AId, ASubId).getName());
+					//System.out.println("Original A :"+ MaterialData.getMaterial(AId, ASubId).getName());
 				}
 			}
 			/**
@@ -92,11 +103,13 @@ public class RecipeManager {
 			if(BType != null){
 				if( BType.equalsIgnoreCase("custom")){
 					blockRecipe.setIngredient('B', blocks[BId-1]);
-					System.out.println("Custom B :"+blocks[BId-1]);
-					
+					//System.out.println("Custom B :"+blocks[BId-1]);
+				}else if(BType.equalsIgnoreCase("customItem")){
+					blockRecipe.setIngredient('B', items[BId+nbBlocks-1]);
+					//System.out.println("Original B :"+ MaterialData.getMaterial(BId, BSubId).getName());
 				}else if(BType.equalsIgnoreCase("original")){
 					blockRecipe.setIngredient('B', MaterialData.getMaterial(BId, BSubId));
-					System.out.println("Original B :"+MaterialData.getMaterial(BId, BSubId ).getName());
+					//System.out.println("Original B :"+MaterialData.getMaterial(BId, BSubId ).getName());
 				}
 			}
 			
@@ -106,9 +119,12 @@ public class RecipeManager {
 			if(CType != null){
 				if( CType.equalsIgnoreCase("custom")){
 					blockRecipe.setIngredient('C', blocks[CId-1]);
+				}else if(CType.equalsIgnoreCase("customItem")){
+					blockRecipe.setIngredient('C', items[CId+nbBlocks-1]);
+					//System.out.println("Original C :"+ MaterialData.getMaterial(CId, CSubId).getName());
 				}else if(CType.equalsIgnoreCase("original")){
 					blockRecipe.setIngredient('C', MaterialData.getMaterial(CId, CSubId));
-					System.out.println("Original C :"+MaterialData.getMaterial(CId, CSubId ).getName());
+					//System.out.println("Original C :"+MaterialData.getMaterial(CId, CSubId ).getName());
 				}
 			}
 			
@@ -118,14 +134,17 @@ public class RecipeManager {
 			if(DType != null){
 				if( DType.equalsIgnoreCase("custom")){
 					blockRecipe.setIngredient('D', blocks[DId-1]);
+				}else if(DType.equalsIgnoreCase("customItem")){
+					blockRecipe.setIngredient('D', items[DId+nbBlocks-1]);
+					//System.out.println("Original D :"+ MaterialData.getMaterial(DId, DSubId).getName());
 				}else if(DType.equalsIgnoreCase("original")){
 					blockRecipe.setIngredient('D', MaterialData.getMaterial(DId, DSubId));
-					System.out.println("Original D :"+MaterialData.getMaterial(DId, DSubId ).getName());
+					//System.out.println("Original D :"+MaterialData.getMaterial(DId, DSubId ).getName());
 				}
 			}
 			
 			SpoutManager.getMaterialManager().registerSpoutRecipe(blockRecipe);
-			System.out.println("[UM RecipeManager] Adding the craft : " + recipeSection.getString(String.valueOf(i)+".desc"));
+			//System.out.println("[UM RecipeManager] Adding the craft : " + recipeSection.getString(String.valueOf(i)+".desc"));
 			
 			i++;
 		}

@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.getspout.spoutapi.block.design.Texture;
 import org.getspout.spoutapi.material.CustomBlock;
 import zubi.mhm.unlimitedmaterials.blocks.*;
+import zubi.mhm.unlimitedmaterials.items.ItemManager;
 
 public class UnlimitedMaterials extends JavaPlugin{
 	private final BlockListener blockListener = new BlockListener(this);
@@ -61,10 +62,12 @@ public class UnlimitedMaterials extends JavaPlugin{
 
 		
 		ConfigurationSection blocksSection = config.getConfigurationSection("blocks");
-		ConfigurationSection recipeSection = config.getConfigurationSection("recipes");
-		
+		ConfigurationSection recipesSection = config.getConfigurationSection("recipes");
+		ConfigurationSection itemsSection = config.getConfigurationSection("items");
+				
 		new BlockManager(this, blocksSection);		
-		new RecipeManager(this, recipeSection);
+		new ItemManager(this, itemsSection);
+		new RecipeManager(this, recipesSection);
 		
 		//System.out.println(blockManager.BlockArray.get(0));
 		//System.out.println(blockManager.BlockArray.get(1).toString());
