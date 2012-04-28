@@ -11,9 +11,9 @@ import zubi.mhm.unlimitedmaterials.utils.Debug;
 
 public class BlockManager {
 
-	public ArrayList<CustomBlock> BlockArray = new ArrayList<CustomBlock>(); 
-	public static CustomBlock block;
-	public static Texture blockTexture;
+	public static ArrayList<CustomBlock> BlockArray = new ArrayList<CustomBlock>(); 
+	public CustomBlock block;
+	public Texture blockTexture;
 	
 	public BlockManager(UnlimitedMaterials plugin, ConfigurationSection blocksSection) {
 		
