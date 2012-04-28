@@ -9,10 +9,13 @@ import org.getspout.spoutapi.material.block.GenericCuboidCustomBlock;
 public class Slabs extends GenericCuboidCustomBlock
 {
 	
-    public Slabs(Plugin plugin, Texture texture)
+    public Slabs(Plugin plugin, Texture texture, String blockName, Integer blockParentId, int[] faces)
     {
-        super(plugin, "Yellow Wool Slab", 44, new GenericCuboidBlockDesign(plugin, texture, new int[] {1,0,0,0,0,1}, 0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F));
-        setBlockDesign(getBlockDesign().setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F));
-        setStepSound(MaterialData.yellowWool.getStepSound());
+    	 super(plugin, blockName, 44, new GenericCuboidBlockDesign(plugin, texture, faces, 0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F));
+    	 this.setBlockDesign(getBlockDesign().setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F));
+         this.setStepSound(MaterialData.whiteWool.getStepSound());
+         this.setHardness(MaterialData.whiteWool.getHardness());
+         this.setFriction(MaterialData.whiteWool.getFriction());
+         this.setLightLevel(MaterialData.whiteWool.getLightLevel());
     }
 }
