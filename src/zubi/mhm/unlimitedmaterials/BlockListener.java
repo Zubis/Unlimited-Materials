@@ -26,9 +26,9 @@ public class BlockListener implements Listener{
 		Player player = event.getPlayer();
 		
 		if(BlockPlaced.isCustomBlock()){
-			String query = "INSERT INTO positions (player, world, X, Y, Z, block_name, block_id, date) VALUES (\'"+player.getName()+"\', \'"+ BlockPlaced.getWorld().getName() +"\' ,\'"+ BlockPlaced.getX()+"\', \'"+ BlockPlaced.getY()+"\', \'"+ BlockPlaced.getZ()+"\', \'"+ BlockPlaced.getCustomBlock().getName() +"\', \'"+ BlockPlaced.getCustomBlockId() +"\', date('now'))";
+			String query = "INSERT INTO positions (player, world, X, Y, Z, block_name, block_id, date) VALUES (\'"+player.getName()+"\', \'"+ BlockPlaced.getWorld().getName() +"\' ,\'"+ BlockPlaced.getX()+"\', \'"+ BlockPlaced.getY()+"\', \'"+ BlockPlaced.getZ()+"\', \'"+ BlockPlaced.getCustomBlock().getName() +"\', \'"+ BlockPlaced.getCustomBlock().getBlockId() +"\', date('now'))";
 			this.plugin.sqlite.query(query);
-			Debug.debug("Insert value into BDD : " + player.getName() + " " + BlockPlaced.getWorld().getName()+ " "+ BlockPlaced.getName() + " " + BlockPlaced.getX() + ":" + BlockPlaced.getY() + ":" + BlockPlaced.getZ());
+			Debug.debug("Insert value into BDD : " + player.getName() + " " + BlockPlaced.getWorld().getName()+ " "+ BlockPlaced.getCustomBlock().getName() + " " + BlockPlaced.getX() + ":" + BlockPlaced.getY() + ":" + BlockPlaced.getZ());
 		}
 	}
 	
@@ -40,7 +40,7 @@ public class BlockListener implements Listener{
 		if(BlockBreaked.isCustomBlock()){
 			String query = "DELETE FROM positions WHERE world = \'"+ BlockBreaked.getWorld().getName() +"\' AND X = " +BlockBreaked.getX()+ " AND Y = "+ BlockBreaked.getY() +" AND Z = "+ BlockBreaked.getZ();
 			this.plugin.sqlite.query(query);
-			Debug.debug("Delete value into BDD : " + event.getPlayer().getName() + " " + BlockBreaked.getWorld().getName()+ " "+ BlockBreaked.getName() + " " + BlockBreaked.getX() + ":" + BlockBreaked.getY() + ":" + BlockBreaked.getZ());
+			Debug.debug("Delete value into BDD : " + event.getPlayer().getName() + " " + BlockBreaked.getWorld().getName()+ " "+ BlockBreaked.getCustomBlock().getName() + " " + BlockBreaked.getX() + ":" + BlockBreaked.getY() + ":" + BlockBreaked.getZ());
 		}
 	}
 }

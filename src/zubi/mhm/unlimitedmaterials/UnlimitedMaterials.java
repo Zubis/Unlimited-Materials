@@ -64,18 +64,18 @@ public class UnlimitedMaterials extends JavaPlugin{
 			Debug.debug("Debug mode enabled");
 		}
 		
-		if(config.contains("blocks")){
+		//if(config.contains("blocks")){
 			ConfigurationSection blocksSection = config.getConfigurationSection("blocks");
 			new BlockManager(this, blocksSection);		
-		}
-		if(config.contains("items")){
+		//}
+		//if(config.contains("items")){
 			ConfigurationSection itemsSection = config.getConfigurationSection("items");
 			new ItemManager(this, itemsSection);
-		}
-		if(config.contains("recipes")){
+		//}
+		//if(config.contains("recipes")){
 			ConfigurationSection recipesSection = config.getConfigurationSection("recipes");
 			new RecipeManager(this, recipesSection);
-		}
+		//}
 		
 		
 		myExecutor = new UMCommandExecutor(this);
