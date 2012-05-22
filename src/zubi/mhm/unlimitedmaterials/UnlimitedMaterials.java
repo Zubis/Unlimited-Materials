@@ -28,7 +28,7 @@ public class UnlimitedMaterials extends JavaPlugin{
 	public static CustomBlock Wool_yellowSlab;
 	public static Texture Wool_yellowTexture;
 	public SQLite sqlite;
-	private UnlimitedMaterialsCommandExecutor myExecutor;
+	private UMCommandExecutor myExecutor;
 	
 	
 	@Override
@@ -59,20 +59,26 @@ public class UnlimitedMaterials extends JavaPlugin{
 		
 		config = this.getConfig();
 		loadConfig();
-
+		
 		if(config.getBoolean("config.debug")){
 			Debug.debug("Debug mode enabled");
 		}
 		
-		ConfigurationSection blocksSection = config.getConfigurationSection("blocks");
-		ConfigurationSection recipesSection = config.getConfigurationSection("recipes");
-		ConfigurationSection itemsSection = config.getConfigurationSection("items");
-				
-		new BlockManager(this, blocksSection);		
-		new ItemManager(this, itemsSection);
-		new RecipeManager(this, recipesSection);
+		if(config.contains("blocks")){
+			ConfigurationSection blocksSection = config.getConfigurationSection("blocks");
+			new BlockManager(this, blocksSection);		
+		}
+		if(config.contains("items")){
+			ConfigurationSection itemsSection = config.getConfigurationSection("items");
+			new ItemManager(this, itemsSection);
+		}
+		if(config.contains("recipes")){
+			ConfigurationSection recipesSection = config.getConfigurationSection("recipes");
+			new RecipeManager(this, recipesSection);
+		}
 		
-		myExecutor = new UnlimitedMaterialsCommandExecutor(this);
+		
+		myExecutor = new UMCommandExecutor(this);
 		getCommand("um").setExecutor(myExecutor);
 		
 		log.info("[" + plugdisc.getName() + "] Version " + plugdisc.getVersion() + " enabled.");	
@@ -82,26 +88,10 @@ public class UnlimitedMaterials extends JavaPlugin{
 	{
 		config.addDefault("config.debug", "true");
 		
-		config.addDefault("blocks.1.name", "Pierre Blanche");
+		config.addDefault("blocks.1.name", "Sample");
 		config.addDefault("blocks.1.faces", 1);
-		config.addDefault("blocks.1.url", "http://dl.dropbox.com/u/68635183/UnlimitedMaterials/pierreblanche.png");
+		config.addDefault("blocks.1.url", "http://dl.dropbox.com/u/68635183/UnlimitedMaterials/bloc.png");
 		config.addDefault("blocks.1.size",32);
-		
-		config.addDefault("blocks.2.name", "Caisse en bois");
-		config.addDefault("blocks.2.faces", 1);
-		config.addDefault("blocks.2.url", "http://dl.dropbox.com/u/68635183/UnlimitedMaterials/bloccaisse.png");
-		config.addDefault("blocks.2.size",32);
-		
-		config.addDefault("recipes.1.desc", "recette pierre Blanche");
-		config.addDefault("recipes.1.item.type", "Custom");
-		config.addDefault("recipes.1.item.id", 1);
-		config.addDefault("recipes.1.item.quantity", 1);
-		config.addDefault("recipes.1.A.type", "Original");
-		config.addDefault("recipes.1.A.id", 1);
-		config.addDefault("recipes.1.B.type", "Original");
-		config.addDefault("recipes.1.B.id", 351);
-		config.addDefault("recipes.1.layout", "AB");
-		
 		
 		config.options().copyDefaults(true);
 		saveConfig();
