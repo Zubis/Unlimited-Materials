@@ -6,13 +6,13 @@ import org.getspout.spoutapi.block.design.Texture;
 import org.getspout.spoutapi.material.MaterialData;
 import org.getspout.spoutapi.material.block.GenericCuboidCustomBlock;
 
-public class Slabs extends GenericCuboidCustomBlock
+public class Tapestry extends GenericCuboidCustomBlock
 {
 	
-    public Slabs(Plugin plugin, Texture texture, String blockName, int[] faces)
+    public Tapestry(Plugin plugin, Texture texture, String blockName, int[] faces)
     {
-    	 super(plugin, blockName, 44, new GenericCuboidBlockDesign(plugin, texture, faces, 0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F));
-    	 this.setBlockDesign(getBlockDesign().setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F));
+    	 super(plugin, blockName, 106, new GenericCuboidBlockDesign(plugin, texture, faces, 0.0F, 0.0F, 0.0F, 0.1F, 1.0F, 1.0F));
+    	 this.setBlockDesign(getBlockDesign().setBoundingBox(0.0F, 0.0F, 0.0F, 0.1F, 1.0F, 1.0F));
          this.setStepSound(MaterialData.whiteWool.getStepSound());
          this.setHardness(MaterialData.whiteWool.getHardness());
          this.setFriction(MaterialData.whiteWool.getFriction());
