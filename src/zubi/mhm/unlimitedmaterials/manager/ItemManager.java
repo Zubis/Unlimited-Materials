@@ -11,23 +11,22 @@ import zubi.mhm.unlimitedmaterials.items.Coins;
 import zubi.mhm.unlimitedmaterials.utils.Debug;
 
 public class ItemManager {
-	public static ArrayList<CustomItem> itemArray = new ArrayList<CustomItem>(); 
+	public ArrayList<CustomItem> itemArray = new ArrayList<CustomItem>(); 
 	public static CustomItem item;
 	public static Texture itemTexture;
 	
 	public ItemManager(UnlimitedMaterials plugin, ConfigurationSection itemsSection) {
 		
-		int i = 0;
-		if(itemsSection.contains(String.valueOf(i))){
-			while (itemsSection.contains(String.valueOf(i))){
-				String itemName = itemsSection.getString(String.valueOf(i)+".name");
-				String itemUrl = itemsSection.getString(String.valueOf(i)+".url", "http://dl.dropbox.com/u/68635183/UnlimitedMaterials/bloc.png");
-				item = new Coins(plugin, itemName, itemUrl);
-				Debug.debug("New item : " + itemName);
-				
-				itemArray.add(item);
-				i++;
-			}
+		int i = 1;
+		
+		while (itemsSection.contains(String.valueOf(i))){
+			String itemName = itemsSection.getString(String.valueOf(i)+".name");
+			String itemUrl = itemsSection.getString(String.valueOf(i)+".url", "http://dl.dropbox.com/u/68635183/UnlimitedMaterials/bloc.png");
+			item = new Coins(plugin, itemName, itemUrl);
+			Debug.debug("New item : " + itemName);
+			
+			itemArray.add(item);
+			i++;
 		}
 	}
 }

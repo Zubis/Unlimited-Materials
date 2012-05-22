@@ -10,6 +10,8 @@ public class Coins extends GenericCustomItem {
 	}
 
 	public Coins(Plugin plugin) {
-		super(plugin, "Piece en Bronze", "http://img11.imageshack.us/img11/9292/itemcoinbronze.png");
+		super(plugin, "Piece en Bronze",
+				"http://img11.imageshack.us/img11/9292/itemcoinbronze.png");
 	}
+
 }

@@ -20,14 +20,11 @@ public class RecipeManager {
 
 	public RecipeManager(UnlimitedMaterials plugin, ConfigurationSection recipeSection) {
 		
-		
 		CustomBlock[] blocks = MaterialData.getCustomBlocks();
-		
-
 		CustomItem[] items = MaterialData.getCustomItems();
 		int nbBlocks = blocks.length;
 		
-		int i = 0;
+		int i = 1;
 		while (recipeSection.contains(String.valueOf(i))){
 			
 			
@@ -65,8 +62,7 @@ public class RecipeManager {
 				if( blockType.equalsIgnoreCase("Custom")){
 					//System.out.println("[UnlimitedMaterials] item type : " + blockType);
 					//System.out.println("[UnlimitedMaterials] item : " + blocks[blockId-1]);
-					
-					itemStack = new SpoutItemStack( blocks[blockId], blockQuantity);
+					itemStack = new SpoutItemStack( blocks[blockId-1], blockQuantity);
 				}else if(blockType.equalsIgnoreCase("Original")){
 					//System.out.println("[UnlimitedMaterials] item type : " + blockType);
 					//System.out.println("[UnlimitedMaterials] item : " + MaterialData.getItem(blockId));
@@ -94,10 +90,10 @@ public class RecipeManager {
 			 */
 			if(AType != null){
 				if( AType.equalsIgnoreCase("custom")){
-					blockRecipe.setIngredient('A', blocks[AId]);
+					blockRecipe.setIngredient('A', blocks[AId-1]);
 					//System.out.println("Custom A :"+blocks[AId-1]);
 				}else if(AType.equalsIgnoreCase("customItem")){
-					blockRecipe.setIngredient('A', items[AId+nbBlocks]);
+					blockRecipe.setIngredient('A', items[AId+nbBlocks-1]);
 					//System.out.println("Original A :"+ MaterialData.getMaterial(AId, ASubId).getName());
 				}else if(AType.equalsIgnoreCase("original")){
 					blockRecipe.setIngredient('A', MaterialData.getMaterial(AId, ASubId));
@@ -110,10 +106,10 @@ public class RecipeManager {
 			
 			if(BType != null){
 				if( BType.equalsIgnoreCase("custom")){
-					blockRecipe.setIngredient('B', blocks[BId]);
+					blockRecipe.setIngredient('B', blocks[BId-1]);
 					//System.out.println("Custom B :"+blocks[BId-1]);
 				}else if(BType.equalsIgnoreCase("customItem")){
-					blockRecipe.setIngredient('B', items[BId+nbBlocks]);
+					blockRecipe.setIngredient('B', items[BId+nbBlocks-1]);
 					//System.out.println("Original B :"+ MaterialData.getMaterial(BId, BSubId).getName());
 				}else if(BType.equalsIgnoreCase("original")){
 					blockRecipe.setIngredient('B', MaterialData.getMaterial(BId, BSubId));
@@ -126,9 +122,9 @@ public class RecipeManager {
 			 */
 			if(CType != null){
 				if( CType.equalsIgnoreCase("custom")){
-					blockRecipe.setIngredient('C', blocks[CId]);
+					blockRecipe.setIngredient('C', blocks[CId-1]);
 				}else if(CType.equalsIgnoreCase("customItem")){
-					blockRecipe.setIngredient('C', items[CId+nbBlocks]);
+					blockRecipe.setIngredient('C', items[CId+nbBlocks-1]);
 					//System.out.println("Original C :"+ MaterialData.getMaterial(CId, CSubId).getName());
 				}else if(CType.equalsIgnoreCase("original")){
 					blockRecipe.setIngredient('C', MaterialData.getMaterial(CId, CSubId));
@@ -141,9 +137,9 @@ public class RecipeManager {
 			 */
 			if(DType != null){
 				if( DType.equalsIgnoreCase("custom")){
-					blockRecipe.setIngredient('D', blocks[DId]);
+					blockRecipe.setIngredient('D', blocks[DId-1]);
 				}else if(DType.equalsIgnoreCase("customItem")){
-					blockRecipe.setIngredient('D', items[DId+nbBlocks]);
+					blockRecipe.setIngredient('D', items[DId+nbBlocks-1]);
 					//System.out.println("Original D :"+ MaterialData.getMaterial(DId, DSubId).getName());
 				}else if(DType.equalsIgnoreCase("original")){
 					blockRecipe.setIngredient('D', MaterialData.getMaterial(DId, DSubId));

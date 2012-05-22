@@ -2,12 +2,12 @@ package zubi.mhm.unlimitedmaterials;
 
 import lib.PatPeter.SQLibrary.SQLite;
 
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.getspout.spoutapi.block.SpoutBlock;
+
 import zubi.mhm.unlimitedmaterials.utils.Debug;
 
 public class BlockListener implements Listener{
@@ -23,12 +23,11 @@ public class BlockListener implements Listener{
 	public void onBlockPlace(BlockPlaceEvent event)
 	{	
 		SpoutBlock BlockPlaced = (SpoutBlock) event.getBlockPlaced();
-		Player player = event.getPlayer();
 		
 		if(BlockPlaced.isCustomBlock()){
-			String query = "INSERT INTO positions (player, world, X, Y, Z, block_name, block_id, date) VALUES (\'"+player.getName()+"\', \'"+ BlockPlaced.getWorld().getName() +"\' ,\'"+ BlockPlaced.getX()+"\', \'"+ BlockPlaced.getY()+"\', \'"+ BlockPlaced.getZ()+"\', \'"+ BlockPlaced.getCustomBlock().getName() +"\', \'"+ BlockPlaced.getCustomBlockId() +"\', date('now'))";
+			String query = "INSERT INTO positions (player, world, X, Y, Z, block_name, block_id, date) VALUES (\'"+event.getPlayer().getName()+"\', \'"+ BlockPlaced.getWorld().getName() +"\' ,\'"+ BlockPlaced.getX()+"\', \'"+ BlockPlaced.getY()+"\', \'"+ BlockPlaced.getZ()+"\', \'"+ BlockPlaced.getCustomBlock().getName() +"\', \'"+ BlockPlaced.getCustomBlockId() +"\', date('now'))";
 			this.plugin.sqlite.query(query);
-			Debug.debug("Insert value into BDD : " + player.getName() + " " + BlockPlaced.getWorld().getName()+ " "+ BlockPlaced.getName() + " " + BlockPlaced.getX() + ":" + BlockPlaced.getY() + ":" + BlockPlaced.getZ());
+			Debug.debug("Insert value into BDD : " + event.getPlayer().getName() + " " + BlockPlaced.getWorld().getName()+ " "+ BlockPlaced.getName() + " " + BlockPlaced.getX() + ":" + BlockPlaced.getY() + ":" + BlockPlaced.getZ());
 		}
 	}
 	

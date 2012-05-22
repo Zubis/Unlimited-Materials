@@ -9,7 +9,7 @@ import org.getspout.spoutapi.material.block.GenericCuboidCustomBlock;
 public class Slabs extends GenericCuboidCustomBlock
 {
 	
-    public Slabs(Plugin plugin, Texture texture, String blockName, int[] faces)
+    public Slabs(Plugin plugin, Texture texture, String blockName, Integer blockParentId, int[] faces)
     {
     	 super(plugin, blockName, 44, new GenericCuboidBlockDesign(plugin, texture, faces, 0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F));
     	 this.setBlockDesign(getBlockDesign().setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F));

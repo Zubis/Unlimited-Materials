@@ -1,6 +1,6 @@
 name: Unlimited-Materials
-version: 1.2b
-description: Unlimited Materials for MHO
+version: 1.2
+description: Unlimited Materials for MHM
 author: Zubi
 website: http://Zubi.fr
 depend: [Spout]
@@ -9,5 +9,5 @@ main:  zubi.mhm.unlimitedmaterials.UnlimitedMaterials
 
 commands:
   um:
-    description: gestion du plugin
-    usage: /um rebuild [size] ou /um give <player> <item> <quantity>
+    description: rebuild les blocs custom
+    usage: /um rebuild [size]
